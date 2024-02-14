@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         SoSHColorDisabled: "#D8D8D8",
         SoSHColorPrimary: "#35383F",
+        SoshColorBento: "#F3F9FF",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

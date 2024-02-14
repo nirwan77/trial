@@ -4,19 +4,61 @@ import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
 import { MdOutlineChevronLeft } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import { usePrivy } from "@privy-io/react-auth";
+import { axios } from "@/lib";
+import { getSignedUrlFunction } from "./action";
 
 function App(): JSX.Element {
-  const [file, setFile] = useState<string | undefined>();
+  const { user } = usePrivy();
+  const [file, setFile] = useState<File | null>();
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [username, setUsername] = useState<string>("");
 
   const router = useRouter();
 
   function handleChange(e: ChangeEvent<HTMLInputElement>): void {
-    if (e.target.files && e.target.files.length > 0) {
-      const selectedFile = e.target.files[0];
-      setFile(URL.createObjectURL(selectedFile));
+    const file = e.target.files?.[0] ?? null;
+    setFile(file);
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+    }
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+    } else {
+      setPreviewUrl(null);
     }
   }
+
+  const handleSubmit = async () => {
+    let uploadedImage = "";
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const { signedUrl, image } = await getSignedUrlFunction(
+        file.type,
+        user?.id || ""
+      );
+
+      await axios.put(signedUrl, file, {
+        headers: {
+          "Content-Type": file.type,
+        },
+      });
+      uploadedImage = image;
+    }
+
+    await axios.post("/users", {
+      id: user?.id,
+      createdAt: user?.createdAt,
+      linkedAccounts: user?.linkedAccounts,
+      username,
+      image: uploadedImage,
+    });
+
+    router.push("/newuser/connectx");
+  };
 
   return (
     <div className="flex justify-center flex-col items-center">
@@ -34,20 +76,27 @@ function App(): JSX.Element {
       </div>
       <div className=" relative w-28 h-28 mb-20">
         <Image
+          priority={true}
           className="object-cover h-full rounded-2xl overflow-hidden"
-          src={file || "/ProfilePic.png"}
+          src={previewUrl || "/ProfilePic.png"}
           width={112}
           height={112}
           alt="uploaded picture"
         />
         <label className="absolute z-20 bottom-0 -right-1 cursor-pointer">
           <Image
+            priority={true}
             src="/uploadImage.png"
             width={32}
             height={31}
             alt="upload image"
           />
-          <input className="hidden" type="file" onChange={handleChange} />
+          <input
+            className="hidden"
+            accept="image/*"
+            type="file"
+            onChange={handleChange}
+          />
         </label>
       </div>
       <div className="flex flex-col max-w-96">
@@ -61,13 +110,13 @@ function App(): JSX.Element {
         />
 
         <button
-          className={`px-28 py-2 rounded-2xl ${
+          className={`px-28 py-2 font-black rounded-2xl ${
             username?.length > 0
               ? " bg-SoSHColorPrimary text-white"
               : "bg-SoSHColorDisabled text-black"
           }`}
           disabled={username?.length === 0 ? true : false}
-          onClick={() => router.push("/home")}
+          onClick={handleSubmit}
         >
           Proceed
         </button>

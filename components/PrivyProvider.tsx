@@ -12,9 +12,10 @@ export default function PrivyProviderWrapper({
   return (
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
-      onSuccess={(isNewUser) =>
-        isNewUser ? router.push("/newuser") : router.push("/home")
-      }
+      onSuccess={(user, isNewUser) => {
+        console.log("this", user, isNewUser);
+        return isNewUser ? router.push("/newuser") : router.push("/home");
+      }}
       config={{
         appearance: {
           showWalletLoginFirst: false,

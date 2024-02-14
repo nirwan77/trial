@@ -6,6 +6,7 @@ import PrivyProviderWrapper from "@/components/PrivyProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: "SoSH",
   description: "SoSh",
 };
