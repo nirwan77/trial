@@ -15,11 +15,6 @@ function App(): JSX.Element {
 
   const handleSubmit = async () => {
     const a = await axios.post("/twitter");
-
-    console.log(a);
-    // const response = await axios.patch("/users", {
-    //   linkedAccounts: user?.linkedAccounts,
-    // });
   };
 
   return (

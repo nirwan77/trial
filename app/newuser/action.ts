@@ -6,8 +6,6 @@ export const getSignedUrlFunction = async (type: string, user: string) => {
   const generateFileName = (bytes = 32) =>
     crypto.randomBytes(bytes).toString("hex");
 
-  console.log(process.env.NEXT_PUBLIC_AWS_BUCKET_NAME);
-
   const s3 = new S3Client({
     region: process.env.NEXT_PUBLIC_AWS_BUCKET_REGION,
     credentials: {

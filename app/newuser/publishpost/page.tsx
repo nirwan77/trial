@@ -1,10 +1,12 @@
 "use client";
 
 import { usePrivy } from "@privy-io/react-auth";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import React, { useState, ChangeEvent, useEffect } from "react";
 import { MdOutlineChevronLeft } from "react-icons/md";
 import Image from "next/image";
+import { uploadPost } from "./action";
+import { axios } from "@/lib";
 
 function App(): JSX.Element {
   const { logout, ready, authenticated, user } = usePrivy();
@@ -14,7 +16,6 @@ function App(): JSX.Element {
   const [files, setFiles] = useState<File[]>([]);
 
   const [checked, setChecked] = useState(false);
-  console.log(userStory);
 
   const [previewUrl, setPreviewUrl] = useState<string[] | null>(null);
 
@@ -31,6 +32,16 @@ function App(): JSX.Element {
       const url = selectedFiles.map((a) => URL.createObjectURL(a));
       setPreviewUrl(url);
     }
+  };
+
+  const handleClick = async () => {
+    const image = await uploadPost(files, user!.id);
+
+    await axios.post("/uploadPost", {
+      url: image,
+      userId: user?.id,
+      story: userStory,
+    });
   };
 
   useEffect(() => {
@@ -52,7 +63,7 @@ function App(): JSX.Element {
       <div className="flex gap-6 mb-8 justify-center">
         <Image
           priority={true}
-          className="object-cover w-12 h-12 rounded-2xl overflow-hidden"
+          className="object-cover w-auto h-12 rounded-2xl overflow-hidden"
           src={"/ProfilePic.png"}
           width={48}
           height={48}
@@ -77,8 +88,8 @@ function App(): JSX.Element {
                 key={idx}
                 className="object-cover h-60 w-32 rounded-lg overflow-hidden"
                 src={preview || "/ProfilePic.png"}
-                width={120}
-                height={240}
+                width={0}
+                height={0}
                 alt="uploaded picture"
               />
             ))}
@@ -87,7 +98,7 @@ function App(): JSX.Element {
               priority={true}
               src="/uploadPost.png"
               width={120}
-              height={240}
+              height={0}
               alt="upload image"
               className="object-cover h-60 w-32 rounded-lg overflow-hidden"
             />
@@ -107,8 +118,8 @@ function App(): JSX.Element {
           <Image
             priority={true}
             src="/alert-triangle.svg"
-            width={24}
-            height={24}
+            width={0}
+            height={0}
             alt="upload image"
             className="h-6 w-7 object-cover"
           />
@@ -139,6 +150,7 @@ function App(): JSX.Element {
                 : "bg-SoSHColorDisabled text-black"
             }`}
             disabled={checked ? false : true}
+            onClick={handleClick}
           >
             Proceed
           </button>
