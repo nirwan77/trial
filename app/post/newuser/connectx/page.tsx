@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { MdOutlineChevronLeft } from "react-icons/md";
+
 import { useRouter } from "next/navigation";
 import { axios } from "@/lib";
 
@@ -20,7 +20,13 @@ function App(): JSX.Element {
           className="absolute left-4"
           onClick={() => router.push("/home")}
         >
-          <MdOutlineChevronLeft size={24} />
+          <Image
+            priority={true}
+            src={"/BackArrowStatus.svg"}
+            width={24}
+            height={24}
+            alt="back arrow"
+          />
         </button>
         <h2 className="font">Connect Account</h2>
       </div>

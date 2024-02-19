@@ -3,7 +3,7 @@
 import { usePrivy } from "@privy-io/react-auth";
 import { redirect } from "next/navigation";
 import React, { useState, ChangeEvent, useEffect } from "react";
-import { MdOutlineChevronLeft } from "react-icons/md";
+
 import Image from "next/image";
 import { uploadPost } from "./action";
 import { useRouter } from "next/navigation";
@@ -46,7 +46,7 @@ function App(): JSX.Element {
       story: userStory,
     });
 
-    push("/post/users/reviewPurchaseCCT");
+    push("/post/users/confirmCCT");
   };
 
   useEffect(() => {
@@ -60,7 +60,13 @@ function App(): JSX.Element {
       <div className="flex justify-center flex-col items-center">
         <div className="mb-14 mt-10 font-[425]">
           <button className="absolute left-4">
-            <MdOutlineChevronLeft size={24} />
+            <Image
+              priority={true}
+              src={"/BackArrowStatus.svg"}
+              width={24}
+              height={24}
+              alt="back arrow"
+            />
           </button>
           <h2 className="font">Publish a post</h2>
         </div>

@@ -12,6 +12,11 @@ const config: Config = {
         SoSHColorDisabled: "#D8D8D8",
         SoSHColorPrimary: "#35383F",
         SoshColorBento: "#F3F9FF",
+        SoshColorInfoColor: "#8EB3FB",
+        SoshColorPopupBannerColor: "#ECF4FD",
+        SoshColorGrey500: "#667085",
+        SoshColorGrey600: "#475467",
+        SoshColorGrey700: "#344054",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

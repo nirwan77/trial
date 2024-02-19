@@ -2,7 +2,7 @@
 
 import React, { useState, ChangeEvent } from "react";
 import Image from "next/image";
-import { MdOutlineChevronLeft } from "react-icons/md";
+
 import { useRouter } from "next/navigation";
 import { usePrivy } from "@privy-io/react-auth";
 import { axios } from "@/lib";
