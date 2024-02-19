@@ -6,10 +6,13 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import { MdOutlineChevronLeft } from "react-icons/md";
 import Image from "next/image";
 import { uploadPost } from "./action";
+import { useRouter } from "next/navigation";
 import { axios } from "@/lib";
 
 function App(): JSX.Element {
   const { logout, ready, authenticated, user } = usePrivy();
+
+  const { push } = useRouter();
 
   const [userStory, setUserStory] = useState<string | undefined>();
 
@@ -42,13 +45,15 @@ function App(): JSX.Element {
       userId: user?.id,
       story: userStory,
     });
+
+    push("/newuser/reviewPurchaseCCT");
   };
 
   useEffect(() => {
     if (ready && !authenticated) {
-      redirect("/");
+      push("/");
     }
-  }, [authenticated, ready]);
+  }, [authenticated, push, ready]);
 
   return (
     <div className="h-screen">

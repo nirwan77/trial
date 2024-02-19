@@ -2,6 +2,7 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import axios from "axios";
 import crypto from "crypto";
+import { NFTStorage, File } from "nft.storage";
 
 export const uploadPost = async (files: File[], user: string) => {
   let image: string[] = [];
@@ -36,6 +37,17 @@ export const uploadPost = async (files: File[], user: string) => {
           "Content-Type": file.type,
         },
       });
+
+      const nft = {
+        image: new Blob([file], { type: file.type }),
+        name: file.name,
+        description: "description",
+      };
+      const client = new NFTStorage({
+        token: process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY || "",
+      });
+      const metadata = await client.store(nft);
+      console.log("Metadata URI: ", metadata.url);
 
       image.push(signedUrl.split("?")[0]);
     })

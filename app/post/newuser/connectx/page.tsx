@@ -1,16 +1,12 @@
 "use client";
 
-import React, { useState, ChangeEvent } from "react";
+import React from "react";
 import Image from "next/image";
 import { MdOutlineChevronLeft } from "react-icons/md";
 import { useRouter } from "next/navigation";
-import { usePrivy } from "@privy-io/react-auth";
 import { axios } from "@/lib";
 
 function App(): JSX.Element {
-  const { user, linkTwitter, getAccessToken } = usePrivy();
-  const [file, setFile] = useState<string | undefined>();
-
   const router = useRouter();
 
   const handleSubmit = async () => {
@@ -83,7 +79,7 @@ function App(): JSX.Element {
         </div>
         <button
           className="p-4 rounded-2xl mb-6 border border-SoSHColorPrimary"
-          onClick={() => router.push("/newuser/publishpost")}
+          onClick={() => router.push("/post/users/publishpost")}
         >
           Skip
         </button>
