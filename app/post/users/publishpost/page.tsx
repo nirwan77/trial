@@ -38,13 +38,15 @@ function App(): JSX.Element {
   };
 
   const handleClick = async () => {
-    const image = await uploadPost(files, user!.id);
+    if (files.length > 0) {
+      const image = await uploadPost(files, user!.id);
 
-    await axios.post("/uploadPost", {
-      url: image,
-      userId: user?.id,
-      story: userStory,
-    });
+      await axios.post("/uploadPost", {
+        url: image,
+        userId: user?.id,
+        story: userStory,
+      });
+    }
 
     push("/post/users/confirmCCT");
   };
@@ -56,7 +58,7 @@ function App(): JSX.Element {
   }, [authenticated, push, ready]);
 
   return (
-    <div className="h-screen">
+    <div>
       <div className="flex justify-center flex-col items-center">
         <div className="mb-14 mt-10 font-[425]">
           <button className="absolute left-4">
@@ -152,7 +154,7 @@ function App(): JSX.Element {
           </div>
         </div>
       </div>
-      <div>
+      <div className="mb-[12vh]">
         <div className="flex flex-col m-auto max-w-96 gap-5">
           <button
             className={`px-28 py-2 rounded-2xl font-black ${

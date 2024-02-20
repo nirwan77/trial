@@ -16,10 +16,7 @@ function App(): JSX.Element {
   return (
     <div className="h-screen flex justify-start flex-col items-center">
       <div className="mb-10 mt-10 font-[425]">
-        <button
-          className="absolute left-4"
-          onClick={() => router.push("/home")}
-        >
+        <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
             src={"/BackArrowStatus.svg"}

@@ -13,7 +13,9 @@ export default function PrivyProviderWrapper({
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID || ""}
       onSuccess={(user, isNewUser) => {
-        return isNewUser ? router.push("/post/newuser") : router.push("/home");
+        return isNewUser
+          ? router.push("/post/newuser")
+          : router.push("/post/users/publishpost");
       }}
       config={{
         appearance: {

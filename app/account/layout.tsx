@@ -6,10 +6,11 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section>
-      {/* Include shared UI here e.g. a header or sidebar */}
-      <div className="h-[90vh]">{children}</div>
+    <div>
+      <div>
+        <div className="h-[90vh]">{children}</div>
+      </div>
       <Footer />
-    </section>
+    </div>
   );
 }
