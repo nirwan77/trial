@@ -3,48 +3,67 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-import { useRouter } from "next/navigation";
 import Overview from "./component/Overview";
 import Asset from "./component/Asset";
 
 function App(): JSX.Element {
-  const [activeTab, setActiveTab] = useState<string>("Trending");
-
-  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<string>("Overview");
 
   return (
-    <div className="mt-8">
-      <div className="flex w-96 px-8 py-4 gap-2 mb-8 flex-shrink-0 rounded-3xl m-auto border border-gray-300 bg-white">
-        <Image alt="search" src={"/search.svg"} width={16} height={16} />
-        <input
-          type="text"
-          id="input"
-          placeholder="Search Asset ID"
-          className="w-full outline-none border-none  text-sm leading-5 text-SoshColorGrey500 placeholder:text-sm placeholder:leading-5 placeholder:text-SoshColorGrey500 focus:bg-white"
+    <div>
+      <div
+        className="
+        before:bg-green-300 before:-z-10 before:-bottom-8 before:w-[100vw] before:h-[40%] before:rounded-[50%] before:absolute
+      relative flex bg-green-300 gap-4 flex-col items-center mb-11 justify-center w-full"
+      >
+        <Image alt="" src={"/smilingFace.svg"} width={104} height={104} />
+
+        <div className="text-white font-bold leading-Sosh22">@john254</div>
+
+        <Image
+          alt="settings"
+          src={"/settingIcon.svg"}
+          width={40}
+          height={40}
+          className="absolute right-4 top-6"
         />
+
+        <div className="flex gap-7">
+          <Image alt="" src={"/x.svg"} width={20} height={20} />
+
+          <Image
+            alt=""
+            src={"/instagram.svg"}
+            width={20}
+            height={20}
+            className="mt-5"
+          />
+          <Image alt="" src={"/telegram.svg"} width={20} height={20} />
+        </div>
       </div>
-      <div className="flex mb-8 justify-center gap-8 text-xs leading-4 text-center">
+      <div className="flex justify-between w-full items-start px-16 mb-6">
         <button
-          className={
+          onClick={() => setActiveTab("Overview")}
+          className={`px-8 py-2 text-xs font-[425] leading-5 ${
             activeTab === "Overview"
-              ? "text-SoSHColorPrimary"
-              : "text-SoshColorGrey400"
-          }
-          onClick={(e) => setActiveTab("Overview")}
+              ? " bg-green-500 text-white "
+              : " border border-SoSHColorDisabled text-black "
+          }rounded-lg`}
         >
           Overview
         </button>
         <button
-          className={
+          onClick={() => setActiveTab("Asset")}
+          className={`px-8 py-2 text-xs font-[425] leading-5 ${
             activeTab === "Asset"
-              ? "text-SoSHColorPrimary"
-              : "text-SoshColorGrey400"
-          }
-          onClick={(e) => setActiveTab("Asset")}
+              ? " bg-green-500 text-white "
+              : " border border-SoSHColorDisabled text-black "
+          }rounded-lg`}
         >
           Asset
         </button>
       </div>
+
       {activeTab === "Overview" && <Overview />}
       {activeTab === "Asset" && <Asset />}
     </div>

@@ -20,21 +20,25 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-black text-sm leading-5">Post published</h2>
+        <h2 className="font-[425%] leading-Sosh22">Publish post</h2>
       </div>
 
-      <div className="my-8 gap-8 flex flex-col items-center w-80 px-8 py-10">
+      <div>
         <Image
           priority={true}
           src={"/success.svg"}
-          width={185}
+          width={380}
           height={185}
           alt="back arrow"
+          className="mb-1"
         />
-        <div className="text-SoshColorGreyScale font-black text-2xl leading-[140%]">
+      </div>
+
+      <div className="mb-4 flex flex-col items-center w-80 px-7">
+        <div className="text-SoshColorGreyScale text-2xl leading-Sosh22 mb-4">
           Success
         </div>
-        <div className="text-SoshColorGreyScale font- font-normal text-base leading-5 text-center">
+        <div className="text-SoshColorGreyScale text-sm font-normal leading-Sosh22 text-center">
           Your post has published. Share your post and start to earn now.
         </div>
       </div>
@@ -42,8 +46,9 @@ function App(): JSX.Element {
       <div className="w-96">
         <div className="flex flex-col m-auto gap-5">
           <button
+            onClick={() => router.push("/account")}
             className={
-              "p-4 w-full rounded-2xl font-black bg-SoSHColorPrimary text-white"
+              "p-4 w-full rounded-2xl font-[425] leading-5 text-sm bg-green-500 text-white"
             }
           >
             Check your post

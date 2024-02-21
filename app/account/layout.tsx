@@ -7,9 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div>
-      <div>
-        <div className="h-[90vh]">{children}</div>
-      </div>
+      <div className=" mb-[10vh]">{children}</div>
       <Footer />
     </div>
   );

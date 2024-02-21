@@ -14,6 +14,7 @@ const config: Config = {
         SoshColorBento: "#F3F9FF",
         SoshColorInfoColor: "#8EB3FB",
         SoshColorPopupBannerColor: "#ECF4FD",
+        SoshColorGrey300: "#D0D5DD",
         SoshColorGrey400: "#98A2B3",
         SoshColorGrey500: "#667085",
         SoshColorGrey600: "#475467",
