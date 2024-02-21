@@ -32,7 +32,7 @@ const Footer = () => {
       </button>
       <button
         className="flex flex-col items-center justify-center gap-1"
-        onClick={() => handleChange("post/users/publishpost")}
+        onClick={() => handleChange("post/newuser/publishpost")}
       >
         <PostImage active={active === "post"} />
         <p>Post</p>

@@ -82,7 +82,7 @@ function App(): JSX.Element {
         </div>
         <button
           className="p-4 rounded-2xl mb-6 border border-SoSHColorPrimary"
-          onClick={() => router.push("/post/users/publishpost")}
+          onClick={() => router.push("/post/newuser/publishpost")}
         >
           Skip
         </button>

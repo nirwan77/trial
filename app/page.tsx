@@ -9,7 +9,7 @@ export default function Login() {
 
   useEffect(() => {
     if (ready && authenticated) {
-      redirect("/post/users/publishpost");
+      redirect("/post/newuser/publishpost");
     }
   }, [authenticated, ready]);
 
