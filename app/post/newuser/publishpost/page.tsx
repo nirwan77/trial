@@ -61,17 +61,12 @@ function App(): JSX.Element {
     <div>
       <div className="flex justify-center flex-col items-center">
         <div className="mb-14 mt-10 font-[425]">
-          <button className="absolute left-4">
-            <Image
-              priority={true}
-              src={"/BackArrowStatus.svg"}
-              width={24}
-              height={24}
-              alt="back arrow"
-            />
-          </button>
           <h2 className="font">Publish a post</h2>
         </div>
+      </div>
+      <div className="flex w-96 justify-between items-start m-auto mb-4">
+        <button>Cancel</button>
+        <button className="px-4 py-2 bg-green-500 rounded-lg">Proceed</button>
       </div>
       <div className="flex gap-6 mb-8 justify-center">
         <Image
@@ -166,12 +161,6 @@ function App(): JSX.Element {
             onClick={handleClick}
           >
             Proceed
-          </button>
-          <button
-            className="bg-orange-500 px-28 py-2 rounded-2xl font-black hover:bg-orange-600 text-white"
-            onClick={logout}
-          >
-            logout
           </button>
         </div>
       </div>

@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
-import Overview from "./component/Overview";
-import Asset from "./component/Asset";
+import { axios } from "@/lib";
+import Trending from "./component/Trending";
+import Top from "./component/Top";
+import Latest from "./component/Latest";
 
 function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>("Trending");
@@ -26,27 +28,38 @@ function App(): JSX.Element {
       <div className="flex mb-8 justify-center gap-8 text-xs leading-4 text-center">
         <button
           className={
-            activeTab === "Overview"
+            activeTab === "Latest"
               ? "text-SoSHColorPrimary"
               : "text-SoshColorGrey400"
           }
-          onClick={(e) => setActiveTab("Overview")}
+          onClick={(e) => setActiveTab("Latest")}
         >
-          Overview
+          Latest
         </button>
         <button
           className={
-            activeTab === "Asset"
+            activeTab === "Trending"
               ? "text-SoSHColorPrimary"
               : "text-SoshColorGrey400"
           }
-          onClick={(e) => setActiveTab("Asset")}
+          onClick={(e) => setActiveTab("Trending")}
         >
-          Asset
+          Trending
+        </button>
+        <button
+          className={
+            activeTab === "Top"
+              ? "text-SoSHColorPrimary"
+              : "text-SoshColorGrey400"
+          }
+          onClick={(e) => setActiveTab("Top")}
+        >
+          Top
         </button>
       </div>
-      {activeTab === "Overview" && <Overview />}
-      {activeTab === "Asset" && <Asset />}
+      {activeTab === "Trending" && <Trending />}
+      {activeTab === "Top" && <Top />}
+      {activeTab === "Latest" && <Latest />}
     </div>
   );
 }

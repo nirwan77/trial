@@ -19,12 +19,13 @@ const config: Config = {
         SoshColorGrey600: "#475467",
         SoshColorGrey700: "#344054",
         SoshColorGreyScale: "#212121",
+        SoshButtonDisable: "#FBFBFB",
       },
       lineHeight: {
         Sosh22: "140%",
       },
       width: {
-        "360": "22.5em",
+        "360": "22.5rem",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
