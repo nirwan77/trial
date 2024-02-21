@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { axios } from "@/lib";
 
 function App(): JSX.Element {
-  const { logout, ready, authenticated, user } = usePrivy();
+  const { ready, authenticated, user } = usePrivy();
 
   const { push } = useRouter();
 
@@ -18,7 +18,7 @@ function App(): JSX.Element {
 
   const [files, setFiles] = useState<File[]>([]);
 
-  const [checked, setChecked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const [previewUrl, setPreviewUrl] = useState<string[] | null>(null);
 
@@ -64,106 +64,102 @@ function App(): JSX.Element {
           <h2 className="font">Publish a post</h2>
         </div>
       </div>
-      <div className="flex w-96 justify-between items-start m-auto mb-4">
+      <div className="flex w-96 justify-between items-start m-auto mb-6">
         <button>Cancel</button>
-        <button className="px-4 py-2 bg-green-500 rounded-lg">Proceed</button>
+        <button
+          onClick={() => setShowModal(true)}
+          className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
+        >
+          Proceed
+        </button>
       </div>
-      <div className="flex gap-6 mb-8 justify-center">
+      <div className="flex m-auto w-96 gap-4 mb-8 items-start justify-start">
         <Image
           priority={true}
-          className="object-cover w-auto h-12 rounded-2xl overflow-hidden"
-          src={"/ProfilePic.png"}
-          width={48}
-          height={48}
+          className="object-cover rounded-2xl overflow-hidden"
+          src={"/smilingFace.svg"}
+          width={34}
+          height={34}
           alt="uploaded picture"
         />
-        <textarea
-          className="px-8 py-2 resize-none min-h-20 rounded-2xl border-SoSHColorDisabled border"
-          name=""
-          placeholder="Tell us the story..."
-          id=""
-          onChange={(e) => setUserStory(e.target.value)}
-        />
+        <div>
+          <textarea
+            className="resize-none min-h-16 w-72 outline-none focus:border-none"
+            name=""
+            placeholder="Tell us the story..."
+            id=""
+            onChange={(e) => setUserStory(e.target.value)}
+          />
+        </div>
       </div>
 
       <div className="px-7 mb-16">
-        <h1 className="font-black text-sm mb-2">Add media Optional Max 9</h1>
-        <div className="flex ">
+        <div className="flex gap-1">
           {previewUrl &&
             previewUrl.map((preview, idx) => (
               <Image
                 priority={true}
                 key={idx}
-                className="object-cover h-60 w-32 rounded-lg overflow-hidden"
+                className="object-cover rounded-lg"
                 src={preview || "/ProfilePic.png"}
-                width={0}
-                height={0}
+                width={380}
+                height={243}
                 alt="uploaded picture"
               />
             ))}
-          <label>
-            <Image
-              priority={true}
-              src="/uploadPost.png"
-              width={120}
-              height={0}
-              alt="upload image"
-              className="object-cover h-60 w-32 rounded-lg overflow-hidden"
-            />
-            <input
-              className="hidden"
-              accept="image/*"
-              type="file"
-              multiple
-              max={9}
-              onChange={handleChange}
-            />
-          </label>
         </div>
-      </div>
-      <div className="m-auto max-w-80 mb-11">
-        <div className="flex justify-center items-start gap-3">
-          <Image
-            priority={true}
-            src="/alert-triangle.svg"
-            width={0}
-            height={0}
-            alt="upload image"
-            className="h-6 w-7 object-cover"
-          />
-          <div className="flex flex-col gap-2">
-            <p className="leading-4 font-black text-SoSHColorDisabled text-xs">
-              Please note you may lose account and digital assets if you
-              violated community guideline.
-            </p>
-            <form className="flex gap-2">
-              <input
-                type="checkbox"
-                onClick={() => setChecked((prev) => !prev)}
-              />
-              <p className="leading-4 font-black text-SoSHColorPrimary text-xs">
-                <span className="text-SoSHColorDisabled">I accept </span>
-                Sosh Community Guideline
-              </p>
-            </form>
+
+        <div
+          className={
+            `${showModal ? "flex " : "hidden "}` +
+            "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
+          }
+        >
+          <div className="py-8 px-2 w-360 border shadow-lg rounded-2xl bg-white">
+            <div className="flex flex-col justify-center items-center gap-8">
+              <div className="flex leading-Sosh22 justify-center px-8">
+                <div>purchase 1 CCT* to post</div>
+              </div>
+              <div className="flex gap-8 justify-center w-full items-start m-auto mb-6">
+                <button
+                  onClick={handleClick}
+                  className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
+                >
+                  Proceed
+                </button>
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="px-8 py-2 text-xs font-[425] leading-5 border border-SoSHColorDisabled rounded-lg"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div className="text-xs text-center text-SoshColorGrey400 font-[425] leading-5 ">
+              *Content Certification Token (CCT){" "}
+            </div>
           </div>
         </div>
       </div>
-      <div className="mb-[12vh]">
-        <div className="flex flex-col m-auto max-w-96 gap-5">
-          <button
-            className={`px-28 py-2 rounded-2xl font-black ${
-              checked
-                ? " bg-SoSHColorPrimary text-white"
-                : "bg-SoSHColorDisabled text-black"
-            }`}
-            disabled={checked ? false : true}
-            onClick={handleClick}
-          >
-            Proceed
-          </button>
-        </div>
-      </div>
+
+      <label className="fixed bottom-0 flex justify-center left-0 py-4 w-screen sosh__background">
+        <Image
+          priority={true}
+          src="/camera.svg"
+          width={26}
+          height={24}
+          alt="upload image"
+          className="object-cover overflow-hidden"
+        />
+        <input
+          className="hidden"
+          accept="image/*"
+          type="file"
+          multiple
+          max={9}
+          onChange={handleChange}
+        />
+      </label>
     </div>
   );
 }
