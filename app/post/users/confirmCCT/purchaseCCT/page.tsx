@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
+import Transfer from "@/components/transfer";
 
 function App(): JSX.Element {
   const router = useRouter();
@@ -37,14 +38,8 @@ function App(): JSX.Element {
 
         <div className="flex gap-2 text-2xl leading-5 text-white">1 CCT</div>
         <div className="flex gap-2 leading-5 text-white">
-          <Image
-            className="w-auto stroke-white"
-            priority
-            src={"/transfer.svg"}
-            alt="Follow us on Twitter"
-            width={22}
-            height={22}
-          />
+          <Transfer color="white" />
+
           <p>2000 Sosh</p>
         </div>
       </div>

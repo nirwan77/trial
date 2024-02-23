@@ -1,12 +1,7 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Card = () => {
-  const pathname = usePathname();
-
-  const currentUrl = pathname.split("/")[1];
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center mx-4">
@@ -39,7 +34,10 @@ const Card = () => {
           </div>
         </div>
         <div className="flex w-full px-4 justify-between">
-          <button className="px-8 text-sm leading-Sosh22 py-2 bg-black text-white rounded-lg">
+          <button
+            onClick={() => router.push("/account/stakeETH")}
+            className="px-8 text-sm leading-Sosh22 py-2 bg-black text-white rounded-lg"
+          >
             Stake
           </button>
           <button className="px-8 text-sm leading-Sosh22 py-2 rounded-lg border border-SoshColorGrey700">

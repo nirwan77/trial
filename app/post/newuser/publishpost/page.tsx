@@ -12,7 +12,7 @@ import { axios } from "@/lib";
 function App(): JSX.Element {
   const { ready, authenticated, user } = usePrivy();
 
-  const { push } = useRouter();
+  const { push, back } = useRouter();
 
   const [userStory, setUserStory] = useState<string | undefined>();
 
@@ -65,7 +65,7 @@ function App(): JSX.Element {
         </div>
       </div>
       <div className="flex w-96 justify-between items-start m-auto mb-6">
-        <button>Cancel</button>
+        <button onClick={() => back}>Cancel</button>
         <button
           onClick={() => setShowModal(true)}
           className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
@@ -93,8 +93,8 @@ function App(): JSX.Element {
         </div>
       </div>
 
-      <div className="px-7 mb-16">
-        <div className="flex gap-1">
+      <div className="pl-7 mb-16">
+        <div className="overflow-no-scroll flex gap-2 overflow-x-scroll">
           {previewUrl &&
             previewUrl.map((preview, idx) => (
               <Image
@@ -102,8 +102,8 @@ function App(): JSX.Element {
                 key={idx}
                 className="object-cover rounded-lg"
                 src={preview || "/ProfilePic.png"}
-                width={380}
-                height={243}
+                width={350}
+                height={250}
                 alt="uploaded picture"
               />
             ))}
