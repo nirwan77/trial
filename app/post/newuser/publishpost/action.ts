@@ -6,6 +6,7 @@ import { NFTStorage, File } from "nft.storage";
 
 export const uploadPost = async (files: File[], user: string) => {
   let image: string[] = [];
+  let ipfsLink: string[] = [];
 
   await Promise.all(
     files.map(async (file) => {
@@ -50,7 +51,8 @@ export const uploadPost = async (files: File[], user: string) => {
       console.log("Metadata URI: ", metadata.url);
 
       image.push(signedUrl.split("?")[0]);
+      ipfsLink.push(metadata.url);
     })
   );
-  return image;
+  return { image, ipfsLink };
 };

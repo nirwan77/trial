@@ -1,24 +1,27 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Card from "./Card";
+import { axios } from "@/lib";
+import Loading from "@/app/loading";
 
 const Latest = () => {
-  const pathname = usePathname();
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
-  const currentUrl = pathname.split("/")[1];
+  useEffect(() => {
+    axios
+      .get("/ccts")
+      .then((response) => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
-  const [active, setActive] = useState<string>(currentUrl);
-
-  const { push } = useRouter();
-
-  const handleChange = (section: string) => {
-    setActive(section);
-    push(`/${section}`);
-  };
-
-  return <div>Latest</div>;
+  return <div>{isLoading ? <Loading /> : <Card data={data} />}</div>;
 };
 
 export default Latest;

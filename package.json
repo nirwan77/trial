@@ -17,6 +17,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "axios": "^1.6.7",
     "crypto-ts": "^1.0.2",
+    "dayjs": "^1.11.10",
     "jsonwebtoken": "^9.0.2",
     "mime": "^4.0.1",
     "mongodb": "^6.3.0",
@@ -25,7 +26,8 @@
     "nft.storage": "^7.1.1",
     "oauth": "^0.10.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "swiper": "^11.0.6"
   },
   "devDependencies": {
     "@types/node": "^20",

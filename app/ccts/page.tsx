@@ -1,18 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { useRouter } from "next/navigation";
-import { axios } from "@/lib";
 import Trending from "./component/Trending";
 import Top from "./component/Top";
 import Latest from "./component/Latest";
 
 function App(): JSX.Element {
   const [activeTab, setActiveTab] = useState<string>("Trending");
-
-  const router = useRouter();
 
   return (
     <div className="mt-8">

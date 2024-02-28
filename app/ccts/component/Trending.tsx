@@ -1,10 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import { axios } from "@/lib";
+import Loading from "@/app/loading";
+import dayjs from "dayjs";
 
 const Trending = () => {
   const [activeTab, setActiveTab] = useState<string>("Weekly");
+
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const fetchData = async (currentTab: string) => {
+    setLoading(true);
+    const date =
+      currentTab === "Weekly"
+        ? dayjs().subtract(7, "day").format("YYYY-MM-DD")
+        : currentTab === "Monthly"
+        ? dayjs().subtract(1, "month").format("YYYY-MM-DD")
+        : currentTab === "Daily"
+        ? dayjs().format("YYYY-MM-DD")
+        : null;
+
+    axios
+      .get("/ccts", {
+        params: { date: date },
+      })
+      .then((response) => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchData(activeTab);
+  }, [activeTab]);
 
   return (
     <div>
@@ -40,7 +74,7 @@ const Trending = () => {
           Monthly
         </button>
       </div>
-      <Card />
+      <div>{isLoading ? <Loading /> : <Card data={data} />}</div>
     </div>
   );
 };

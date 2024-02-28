@@ -20,6 +20,8 @@ function App(): JSX.Element {
 
   const [showModal, setShowModal] = useState(false);
 
+  const [disableButton, setDisableButton] = useState(false);
+
   const [previewUrl, setPreviewUrl] = useState<string[] | null>(null);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -38,13 +40,16 @@ function App(): JSX.Element {
   };
 
   const handleClick = async () => {
+    setDisableButton(true);
     if (files.length > 0) {
-      const image = await uploadPost(files, user!.id);
+      const { image, ipfsLink } = await uploadPost(files, user!.id);
 
       await axios.post("/uploadPost", {
         url: image,
         userId: user?.id,
         story: userStory,
+        ipfs: ipfsLink,
+        views: [],
       });
     }
 
@@ -65,7 +70,7 @@ function App(): JSX.Element {
         </div>
       </div>
       <div className="flex w-96 justify-between items-start m-auto mb-6">
-        <button onClick={() => back}>Cancel</button>
+        <button onClick={() => push("/ccts")}>Cancel</button>
         <button
           onClick={() => setShowModal(true)}
           className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
@@ -123,6 +128,7 @@ function App(): JSX.Element {
               <div className="flex gap-8 justify-center w-full items-start m-auto mb-6">
                 <button
                   onClick={handleClick}
+                  disabled={disableButton}
                   className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
                 >
                   Proceed

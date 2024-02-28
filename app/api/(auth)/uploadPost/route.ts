@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
-import publishedPosts from "@/models/publishedPosts";
+import PublishedPosts from "@/models/publishedPosts";
 
 export const POST = async (request: Request, response: Response) => {
   try {
@@ -8,7 +8,7 @@ export const POST = async (request: Request, response: Response) => {
 
     await connect();
 
-    const newPost = new publishedPosts(body);
+    const newPost = new PublishedPosts(body);
     await newPost.save();
 
     return new NextResponse(null, { status: 201 });
