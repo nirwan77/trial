@@ -15,73 +15,45 @@ function App(): JSX.Element {
 
   return (
     <div className="h-screen flex justify-start flex-col items-center">
-      <div className="mb-10 mt-10 font-[425]">
-        <button className="absolute left-4" onClick={() => router.back()}>
-          <Image
-            priority={true}
-            src={"/BackArrowStatus.svg"}
-            width={24}
-            height={24}
-            alt="back arrow"
-          />
-        </button>
-        <h2 className="font">Connect Account</h2>
-      </div>
-      <div className="mb-10">
-        <h2 className="font-[425]">Connect X</h2>
-      </div>
-      <div className="flex mb-8 gap-8">
-        <Image
-          className="w-auto"
-          priority
-          src={"/Twitter.svg"}
-          alt="Follow us on Twitter"
-          width={40}
-          height={40}
-        />
-        <Image
-          className="w-auto"
-          priority
-          src={"/switchHorizontal.svg"}
-          alt="Follow us on Twitter"
-          width={24}
-          height={24}
-        />
-        <Image
-          className="w-auto"
-          priority
-          src={"/connectTwitterIcon.svg"}
-          alt="Follow us on Twitter"
-          width={40}
-          height={40}
-        />
-      </div>
-
-      <div className="flex h-full justify-between flex-col">
-        <div className="flex flex-col max-w-96 gap-8">
-          <div className="flex px-4 rounded-2xl bg-SoshColorBento py-[18px] gap-2">
+      <div className="w-full flex-col flex items-center justify-center">
+        <div className="mb-6 mt-10 font-[425] text-white">
+          <button className="absolute left-4" onClick={() => router.back()}>
             <Image
-              className="w-auto"
-              priority
-              src={"/infoIcon.svg"}
-              alt="Follow us on Twitter"
-              width={22}
-              height={22}
+              priority={true}
+              src={"/BackArrowStatus.svg"}
+              width={24}
+              height={24}
+              alt="back arrow"
             />
-            <p className="text-sm">
-              Connect your X account with Sosh for better experience!
-            </p>
-          </div>
-
+          </button>
+          <h2 className="font-[425] text-SoshColorGrey700 leading-5">
+            Set up profile
+          </h2>
+        </div>
+      </div>
+      <div className="w-full flex flex-col items-center mt-11 h-full">
+        <div className="bg-green-300 w-80 rounded-3xl flex flex-col items-center gap-[72px] justify-start px-4 py-8 mb-8">
+          <h2 className="font-[425] text-sm text-white">Connect X</h2>
+          <Image
+            className="w-auto"
+            priority
+            src={"/Twitter.svg"}
+            alt="Follow us on Twitter"
+            width={40}
+            height={40}
+          />
+          <h2 className="font-[425] text-sm text-center text-white leading-Sosh22">
+            Connect your X account with SST for better experience!
+          </h2>
           <button
-            className="p-4 rounded-2xl font-black bg-SoSHColorPrimary text-white"
+            className="w-full font-bold text-sm text-white"
             onClick={handleSubmit}
           >
             Proceed
           </button>
         </div>
         <button
-          className="p-4 rounded-2xl mb-6 border border-SoSHColorPrimary"
+          className="w-96 font-bold text-sm text-SoSHColorPrimary rounded-2xl p-4 mb-6 border border-SoSHColorPrimary"
           onClick={() => router.push("/post/newuser/publishpost")}
         >
           Skip

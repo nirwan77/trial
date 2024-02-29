@@ -9,7 +9,7 @@ export default function Login() {
 
   useEffect(() => {
     if (ready && authenticated) {
-      redirect("/post/newuser/publishpost");
+      redirect("/ccts");
     }
   }, [authenticated, ready]);
 
