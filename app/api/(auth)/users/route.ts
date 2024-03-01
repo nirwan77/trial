@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import users from "@/models/users";
 
-export const config = { runtime: "experimental-edge" };
+export const runtime = "experimental-edge";
 
 export const GET = async () => {
   try {
