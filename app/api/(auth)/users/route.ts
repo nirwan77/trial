@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import users from "@/models/users";
 
-export const runtime = "experimental-edge";
-
 export const GET = async () => {
   try {
     await connect();
@@ -28,18 +26,5 @@ export const POST = async (request: Request, response: Response) => {
     return new NextResponse(null, { status: 201 });
   } catch (error) {
     return new NextResponse("Error posting data" + error, { status: 400 });
-  }
-};
-
-export const PATCH = async (request: Request) => {
-  const body = await request.json();
-  try {
-    await connect();
-
-    await users.findOneAndUpdate(body.id, body.linkedAccounts);
-
-    return new NextResponse(null, { status: 201 });
-  } catch (error) {
-    console.log(`Error updating data ${error}.`);
   }
 };
