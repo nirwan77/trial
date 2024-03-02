@@ -12,7 +12,7 @@ import { axios } from "@/lib";
 function App(): JSX.Element {
   const { ready, authenticated, user } = usePrivy();
 
-  const { push, back } = useRouter();
+  const { push } = useRouter();
 
   const [userStory, setUserStory] = useState<string | undefined>();
 
