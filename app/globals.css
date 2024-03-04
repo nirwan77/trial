@@ -18,13 +18,8 @@
 
 body {
   font-size: 16px;
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  /* color: rgb(var(--foreground-rgb));  */
+  background: #f2efe8;
 }
 
 @layer utilities {
@@ -33,11 +28,17 @@ body {
   }
 }
 
-.sosh__background {
+.sosh__linear-gradient {
+  background: linear-gradient(270deg, #ffc68d 0%, #fb8b78 100%);
+
+  box-shadow: 0px 0px 6px 0px #e3bcbc;
+}
+
+.sosh__linear-gradient2 {
   background: linear-gradient(
     270deg,
-    rgba(24, 191, 159, 0.18) 0%,
-    rgba(24, 191, 159, 0.04) 100%
+    rgba(254, 202, 150, 0.6) 0%,
+    rgba(255, 179, 166, 0.6) 100%
   );
 }
 

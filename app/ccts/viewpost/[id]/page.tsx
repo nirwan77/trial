@@ -6,7 +6,7 @@ import Heart from "@/components/heart";
 import { useRouter, useParams } from "next/navigation";
 import { axios } from "@/lib";
 import Loading from "@/app/loading";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -25,14 +25,15 @@ interface data {
   updatedAt: string;
   url: string[];
   userId: string;
+  likes: string[];
   _id: string;
   views: number;
 }
 
 function App(): JSX.Element {
-  const { user } = usePrivy();
-
   const [active, setActive] = useState(false);
+
+  const [postLiked, setPostLiked] = useState<boolean | undefined>();
   const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
@@ -42,6 +43,8 @@ function App(): JSX.Element {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
+
     if (param) {
       axios
         .get(`/getPost`, {
@@ -49,6 +52,7 @@ function App(): JSX.Element {
         })
         .then((response) => {
           setData(response.data);
+          setPostLiked(response.data.likes.includes(user));
           setLoading(false);
         })
         .catch((error) => {
@@ -58,13 +62,14 @@ function App(): JSX.Element {
   }, [param]);
 
   useEffect(() => {
-    if (!isLoading && data) {
+    if (!isLoading) {
       const user = localStorage.getItem("user");
       axios
         .post(
           `/getPost`,
           {
-            views: user,
+            user: user,
+            like: postLiked,
           },
           {
             params: param,
@@ -79,7 +84,7 @@ function App(): JSX.Element {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
+  }, [isLoading, postLiked]);
 
   return (
     <>
@@ -136,8 +141,10 @@ function App(): JSX.Element {
 
               <div className="flex justify-between py-8 px-4 items-center text-white text-sm font-bold bg-black leading-Sosh22">
                 <p>1 CCT 20 SST $3490</p>
-                <button onClick={() => setActive((prev) => !prev)}>
-                  <Heart active={active} comment={false} />
+                <button
+                  onClick={() => setPostLiked((prev) => (prev ? !prev : false))}
+                >
+                  <Heart active={postLiked || false} comment={false} />
                 </button>
                 <div>
                   <Image

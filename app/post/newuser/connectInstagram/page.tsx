@@ -28,7 +28,7 @@ function App(): JSX.Element {
             />
           </button>
           <h2 className="font-medium leading-Sosh22 text-SoshColorGrey700">
-            Connect to X
+            Connect to Instagram
           </h2>
         </div>
       </div>
@@ -36,18 +36,18 @@ function App(): JSX.Element {
       <div className="w-full flex flex-col items-center h-full">
         <div className="sosh__linear-gradient w-96 mb-14 rounded-3xl flex flex-col items-center gap-[72px] justify-start px-12 py-8">
           <h2 className="font-bold leading-Sosh22 text-sm text-white">
-            Connect to X
+            Connect to Instagram
           </h2>
           <Image
             className="w-auto"
             priority
-            src={"/Twitter.svg"}
-            alt="Follow us on Twitter"
+            src={"/instagramBig.svg"}
+            alt="Follow us on Instagram"
             width={40}
             height={40}
           />
           <h2 className="font-bold text-sm text-center text-white leading-Sosh22">
-            Connect your X account with SST for better experience!
+            Connect your instagram account with SST for better experience!
           </h2>
           <button
             className="w-full font-bold text-sm leading-Sosh22 text-white"
@@ -58,7 +58,7 @@ function App(): JSX.Element {
         </div>
         <button
           className="w-96 leading-Sosh22 text-sm text-SoSHColorPrimary rounded-2xl p-4 mb-6 border border-SoshColorGrey300"
-          onClick={() => router.push("/post/newuser/connectInstagram")}
+          onClick={() => router.push("/post/newuser/publishpost")}
         >
           Skip
         </button>

@@ -48,7 +48,6 @@ export const uploadPost = async (files: File[], user: string) => {
         token: process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY || "",
       });
       const metadata = await client.store(nft);
-      console.log("Metadata URI: ", metadata.url);
 
       image.push(signedUrl.split("?")[0]);
       ipfsLink.push(metadata.url);

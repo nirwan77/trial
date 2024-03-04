@@ -1,7 +1,6 @@
 "use client";
 
 import { usePrivy } from "@privy-io/react-auth";
-import { redirect } from "next/navigation";
 import React, { useState, ChangeEvent, useEffect } from "react";
 
 import Image from "next/image";
@@ -9,10 +8,17 @@ import { uploadPost } from "./action";
 import { useRouter } from "next/navigation";
 import { axios } from "@/lib";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
+import { Pagination } from "swiper/modules";
+
 function App(): JSX.Element {
   const { ready, authenticated, user } = usePrivy();
 
-  const { push, back } = useRouter();
+  const { push } = useRouter();
 
   const [userStory, setUserStory] = useState<string | undefined>();
 
@@ -20,9 +26,13 @@ function App(): JSX.Element {
 
   const [showModal, setShowModal] = useState(false);
 
+  const [showWarningModal, setShowWarningModal] = useState(false);
+
   const [disableButton, setDisableButton] = useState(false);
 
-  const [previewUrl, setPreviewUrl] = useState<string[] | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string[] | null | undefined>(
+    null
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const filesArray = e.target.files;
@@ -56,6 +66,11 @@ function App(): JSX.Element {
     push("/post/users/confirmCCT");
   };
 
+  const handleRemoveImage = (index: number) => {
+    const newArray = previewUrl?.filter((_, idx) => idx !== index);
+    setPreviewUrl(newArray);
+  };
+
   useEffect(() => {
     if (ready && !authenticated) {
       push("/");
@@ -65,90 +80,134 @@ function App(): JSX.Element {
   return (
     <div>
       <div className="flex justify-center flex-col items-center">
-        <div className="mb-14 mt-10 font-[425]">
+        <div className="mb-4 mt-8 font-medium leading-Sosh22">
           <h2 className="font">Publish a post</h2>
         </div>
+        <div
+          className={
+            `${
+              showWarningModal &&
+              (userStory === undefined || userStory.length === 0)
+                ? "flex "
+                : "hidden "
+            }` +
+            "absolute px-4 py-[18px] top-9 rounded-2xl bg-white z-50 w-96 gap-2 flex items-start justify-start"
+          }
+        >
+          <Image
+            alt="alert"
+            src={"/alertTriangle.svg"}
+            height={24}
+            width={24}
+          />
+          <div className="text-sm leading-Sosh22">
+            You cannot publish blank post
+          </div>
+        </div>
       </div>
-      <div className="flex w-96 justify-between items-start m-auto mb-6">
+
+      <div className="flex w-96 justify-between text-xs font-medium leading-Sosh22 items-start m-auto mb-8">
         <button onClick={() => push("/ccts")}>Cancel</button>
         <button
-          onClick={() => setShowModal(true)}
-          className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
+          onClick={
+            userStory !== undefined
+              ? userStory.length > 0
+                ? () => setShowModal(true)
+                : () => setShowWarningModal(true)
+              : () => setShowWarningModal(true)
+          }
+          className="px-8 py-2 text-white sosh__linear-gradient rounded-lg"
         >
-          Proceed
+          Publish
         </button>
       </div>
-      <div className="flex m-auto w-96 gap-4 mb-8 items-start justify-start">
+
+      <div className="flex m-auto w-96 gap-4 mb-8 items-start justify-center">
         <Image
           priority={true}
           className="object-cover rounded-2xl overflow-hidden"
-          src={"/smilingFace.svg"}
-          width={34}
-          height={34}
+          src={"/profilePic.svg"}
+          width={48}
+          height={48}
           alt="uploaded picture"
         />
         <div>
           <textarea
-            className="resize-none min-h-16 w-72 outline-none focus:border-none"
-            name=""
-            placeholder="Tell us the story..."
-            id=""
+            className="resize-none pt-3 text-sm font-medium leading-Sosh22 min-h-16 w-72 bg-[#f2efe8] outline-none focus:border-none"
+            placeholder="Something worth sharing..."
             onChange={(e) => setUserStory(e.target.value)}
           />
         </div>
       </div>
 
-      <div className="pl-7 mb-16">
-        <div className="overflow-no-scroll flex gap-2 overflow-x-scroll">
-          {previewUrl &&
-            previewUrl.map((preview, idx) => (
-              <Image
-                priority={true}
-                key={idx}
-                className="object-cover rounded-lg"
-                src={preview || "/ProfilePic.png"}
-                width={350}
-                height={250}
-                alt="uploaded picture"
-              />
-            ))}
+      <div className="pl-8">
+        <div className="flex">
+          <Swiper
+            slidesPerView={previewUrl && previewUrl?.length > 1 ? 1.2 : "auto"}
+            spaceBetween={8}
+            className="mySwiper z-10"
+          >
+            {previewUrl &&
+              previewUrl.map((preview, idx) => (
+                <SwiperSlide key={idx} className="relative">
+                  <Image
+                    priority={true}
+                    className="rounded-lg"
+                    src={preview || "/ProfilePic.svg"}
+                    width={320}
+                    height={192}
+                    alt="uploaded picture"
+                  />
+                  <button onClick={() => handleRemoveImage(idx)}>
+                    <Image
+                      priority={true}
+                      className="absolute top-4 right-4 rounded-lg"
+                      src={"/x-close.svg"}
+                      width={24}
+                      height={24}
+                      alt="uploaded picture"
+                    />
+                  </button>
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </div>
 
         <div
           className={
             `${showModal ? "flex " : "hidden "}` +
-            "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
+            "fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full z-50 w-full flex items-center justify-center"
           }
         >
           <div className="py-8 px-2 w-360 border shadow-lg rounded-2xl bg-white">
             <div className="flex flex-col justify-center items-center gap-8">
-              <div className="flex leading-Sosh22 justify-center px-8">
-                <div>purchase 1 CCT* to post</div>
+              <div className="flex font-medium text-SoshColorGrey700 leading-Sosh22 justify-center px-8">
+                <div>purchase 1 CCT to post</div>
               </div>
               <div className="flex gap-8 justify-center w-full items-start m-auto mb-6">
                 <button
-                  onClick={handleClick}
-                  disabled={disableButton}
-                  className="px-8 py-2 text-xs text-white font-[425] leading-5 bg-green-500 rounded-lg"
-                >
-                  Proceed
-                </button>
-                <button
                   onClick={() => setShowModal(false)}
-                  className="px-8 py-2 text-xs font-[425] leading-5 border border-SoSHColorDisabled rounded-lg"
+                  className="px-8 py-2 text-xs font-bold leading-5 border border-SoSHColorDisabled rounded-lg"
                 >
                   Cancel
                 </button>
+                <button
+                  onClick={handleClick}
+                  disabled={disableButton}
+                  className="px-8 py-2 text-xs text-white font-bold leading-5 sosh__linear-gradient rounded-lg"
+                >
+                  Purchase
+                </button>
               </div>
             </div>
-            <div className="text-xs text-center text-SoshColorGrey400 font-[425] leading-5 ">
+            <div className="text-xs text-center text-SoshColorGrey500 leading-5 ">
               *Content Certification Token (CCT){" "}
             </div>
           </div>
         </div>
       </div>
 
-      <label className="fixed bottom-0 flex justify-center left-0 py-4 w-screen sosh__background">
+      <label className="fixed bottom-0 flex justify-center left-0 py-4 w-screen sosh__linear-gradient">
         <Image
           priority={true}
           src="/camera.svg"

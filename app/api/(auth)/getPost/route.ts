@@ -26,10 +26,19 @@ export const POST = async (request: Request, response: Response) => {
 
     await connect();
 
-    const detail = await publishedPost.findOneAndUpdate(
-      { _id: id },
-      { $addToSet: { views: body.views } }
-    );
+    let detail;
+
+    if (body.like) {
+      detail = await publishedPost.findOneAndUpdate(
+        { _id: id },
+        { $addToSet: { views: body.user, likes: body.user } }
+      );
+    } else {
+      detail = await publishedPost.findOneAndUpdate(
+        { _id: id },
+        { $addToSet: { views: body.user }, $pull: { likes: body.user } }
+      );
+    }
 
     return new NextResponse(JSON.stringify(detail), { status: 201 });
   } catch (error) {
