@@ -29,12 +29,17 @@ body {
 }
 
 .sosh__linear-gradient {
-  background: var(
-    --SoshColor-ButtonColor,
-    linear-gradient(270deg, #ffc68d 0%, #fb8b78 100%)
-  );
+  background: linear-gradient(270deg, #ffc68d 0%, #fb8b78 100%);
 
   box-shadow: 0px 0px 6px 0px #e3bcbc;
+}
+
+.sosh__linear-gradient2 {
+  background: linear-gradient(
+    270deg,
+    rgba(254, 202, 150, 0.6) 0%,
+    rgba(255, 179, 166, 0.6) 100%
+  );
 }
 
 .overflow-no-scroll::-webkit-scrollbar {
