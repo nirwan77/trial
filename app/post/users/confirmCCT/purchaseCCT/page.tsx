@@ -26,7 +26,7 @@ function App(): JSX.Element {
         </h2>
       </div>
 
-      <div className="flex flex-col py-8 gap-8 rounded-2xl min-w-96 sosh__linear-gradient2 items-center justify-center mb-11 p-4">
+      <div className="flex flex-col py-8 gap-8 rounded-2xl min-w-96 sosh__linear-gradient2 items-center justify-center mb-8 p-4">
         <Image
           className="w-auto"
           priority
@@ -46,7 +46,7 @@ function App(): JSX.Element {
         </div>
       </div>
 
-      <div className="flex min-w-96 flex-col mb-8 bg-white py-4 px-8 gap-2 items-start rounded-2xl sosh__background border border-SoshColorGrey300">
+      <div className="flex min-w-96 flex-col mb-16 bg-white py-4 px-8 gap-2 items-start rounded-2xl sosh__background border border-SoshColorGrey300">
         <div className="flex justify-between w-full text-SoshColorGrey600">
           <div className="leading-Sosh22 text-black">Amount Total</div>
           <div className="text-xs text-black leading-Sosh22 ">1 CCT</div>

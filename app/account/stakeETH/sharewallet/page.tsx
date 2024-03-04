@@ -21,7 +21,7 @@ function App(): JSX.Element {
 
   return (
     <div className="h-full flex justify-start flex-col items-center">
-      <div className="mb-8 mt-10 font-[425]">
+      <div className="mb-8 mt-10">
         <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
@@ -31,10 +31,10 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-normal leading-Sosh22">Stake ETH</h2>
+        <h2 className="font-medium leading-Sosh22">Stake ETH</h2>
       </div>
 
-      <div className="flex flex-col gap-5 justify-center items-center">
+      <div className="flex flex-col gap-4 mb-4 justify-center items-center">
         <Image alt="qr" src={"/qr.svg"} width={243} height={228} />
         <div className="flex gap-2 text-SoshColorGrey500 justify-start items-start leading-Sosh22 max-w-44">
           <Image
@@ -44,60 +44,53 @@ function App(): JSX.Element {
             height={24}
             alt="alert triangle"
           />
-          Only send ETH to this address
+          ETH Only Address
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <div className="text-sm leading-Sosh22 text-SoshColorGrey600">
+      <div className="flex flex-col gap-2 mb-4">
+        <div className="text-sm font-bold leading-Sosh22 text-SoshColorGrey600">
           Stake Address
         </div>
-        <div className="px-8 py-4 w-96 mb-8 rounded-2xl leading-5 text-sm border border-SoSHColorPrimary">
+        <div className="px-8 bg-white font-bold text-SoshColorGrey700 py-4 w-96 rounded-2xl leading-5 text-sm border border-SoSHColorPrimary">
           0x2e1dqdasx0ajxsadadsda212
         </div>
       </div>
 
-      <div className="flex min-w-96 flex-col mb-8 py-4 px-8 gap-4 items-start rounded-2xl sosh__background border border-SoshColorGrey300">
-        <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
+      <div className="flex min-w-96 flex-col mb-8 py-4 px-8 gap-4 items-start rounded-2xl sosh__linear-gradient2 border border-SoshColorGrey300">
+        <div className="flex justify-between w-full">
+          <div className="text-base leading-Sosh22 text-SoshColorGrey500">
             Network
           </div>
-          <div className="text-xs leading-Sosh22">Blast</div>
+          <div className="text-xs leading-Sosh22 text-SoshColorGrey600">
+            Blast
+          </div>
         </div>
-        <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
+        <div className="flex justify-between w-full">
+          <div className="text-base leading-Sosh22 text-SoshColorGrey500">
             Expire in
           </div>
-          <div className="text-xs leading-Sosh22">3 hr</div>
+          <div className="text-xs leading-Sosh22 text-SoshColorGrey600">
+            3 hr
+          </div>
         </div>
-        <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
+        <div className="flex justify-between w-full">
+          <div className="text-base leading-Sosh22 text-SoshColorGrey500">
             Total Amount
           </div>
-          <div className="text-xs leading-Sosh22">0.531 ETH</div>
+          <div className="text-xs leading-Sosh22 text-SoshColorGrey600">
+            0.531 ETH
+          </div>
         </div>
       </div>
 
       <div className="w-96">
-        <div className="flex flex-col m-auto gap-2">
-          <button
-            onClick={() => router.push("/account/stakeETH/connectwallet")}
-            className={`p-4 w-full rounded-2xl leading-5 text-sm text-white bg-green-500`}
-          >
-            Copy address
-          </button>
-          <div className="text-center text-SoshColorGrey600 text-sm leading-Sosh22">
-            Or
-          </div>
-          <button
-            onClick={() => router.push("/account/stakeETH/sharewallet")}
-            className={
-              "p-4 w-full rounded-2xl leading-5 text-sm border border-SoSHColorPrimary"
-            }
-          >
-            Share
-          </button>
-        </div>
+        <button
+          onClick={() => router.push("/account/stakeETH/connectwallet")}
+          className={`p-4 w-full font-bold rounded-2xl leading-5 text-sm mb-7 text-white sosh__linear-gradient`}
+        >
+          Open in Coinbase wallet
+        </button>
       </div>
     </div>
   );

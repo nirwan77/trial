@@ -30,8 +30,6 @@ const options: Option[] = [
 ];
 
 function App(): JSX.Element {
-  const [amount, setAmount] = useState<string>("");
-
   const router = useRouter();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -48,7 +46,7 @@ function App(): JSX.Element {
 
   return (
     <div className="h-full flex justify-start flex-col items-center">
-      <div className="mb-8 mt-10 font-[425]">
+      <div className="mb-8 mt-10">
         <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
@@ -58,13 +56,13 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-normal leading-Sosh22">Stake ETH</h2>
+        <h2 className="font-medium leading-Sosh22">Stake ETH</h2>
       </div>
 
       <div className="relative w-96 mx-auto mb-8 max-w-md">
         <div className="dropdown">
           <div
-            className="dropdown-toggle flex px-8 gap-2 py-4 w-full border rounded-3xl border-SoshColorGrey300"
+            className="dropdown-toggle items-center text-sm font-medium leading-Sosh22 bg-white flex px-8 gap-2 py-4 w-full border rounded-3xl border-SoshColorGrey300"
             onClick={toggleDropdown}
           >
             {selectedOption && (
@@ -73,7 +71,7 @@ function App(): JSX.Element {
                 height={24}
                 src={selectedOption.image}
                 alt={selectedOption.label}
-                className="rounded-full mr-2"
+                className="rounded-full"
               />
             )}
             <span className="dropdown-option-label flex-grow">
@@ -105,7 +103,9 @@ function App(): JSX.Element {
                     alt={option.label}
                     className="rounded-full mr-2"
                   />
-                  <span className="text-sm flex-grow">{option.label}</span>
+                  <span className="text-sm font-medium leading-Sosh22 flex-grow">
+                    {option.label}
+                  </span>
                 </div>
                 {options.length - 1 !== index && (
                   <div className="w-full h-[1px] mb-4 bg-SoshColorGrey600"></div>
@@ -116,15 +116,15 @@ function App(): JSX.Element {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-96 mb-24">
-        <div className="flex px-8 gap-2 py-4 w-full border rounded-3xl border-SoshColorGrey300 select-none">
+      <div className="flex flex-col gap-2 w-96 mb-10">
+        <div className="flex items-center px-8 text-sm font-medium leading-Sosh22 bg-white gap-2 py-4 w-full border rounded-3xl border-SoshColorGrey300 select-none">
           <Image
             width={24}
             height={24}
             alt="Blast"
             src={"/BlastNetworkIcon.svg"}
           />
-          Blast Network
+          Base Network
         </div>
       </div>
 
@@ -132,12 +132,12 @@ function App(): JSX.Element {
         <div className="flex flex-col m-auto gap-2">
           <button
             onClick={() => router.push("/account/stakeETH/sharewallet")}
-            className={`p-4 w-full rounded-2xl leading-5 text-sm  ${
-              amount.length > 0
-                ? " text-white bg-green-500"
+            className={`p-4 w-full font-bold rounded-2xl leading-5 text-sm  ${
+              selectedOption !== null
+                ? " text-white sosh__linear-gradient"
                 : "text-black bg-SoSHColorDisabled"
             }`}
-            disabled={amount.length === 0}
+            disabled={selectedOption == null}
           >
             Connect
           </button>
@@ -147,7 +147,7 @@ function App(): JSX.Element {
           <button
             onClick={() => router.push("/account/stakeETH/sharewallet")}
             className={
-              "p-4 w-full rounded-2xl leading-5 text-sm border border-SoSHColorPrimary"
+              "p-4 w-full font-bold rounded-2xl leading-5 text-sm border border-SoSHColorPrimary"
             }
           >
             Prefer not to say

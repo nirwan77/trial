@@ -4,12 +4,13 @@ import React from "react";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
+import Transfer from "@/components/transfer";
 
 function App(): JSX.Element {
   const router = useRouter();
   return (
     <div className="h-full flex justify-start flex-col items-center">
-      <div className="mb-8 mt-10 font-[425]">
+      <div className="my-8">
         <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
@@ -19,37 +20,45 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-normal leading-Sosh22">Stake ETH</h2>
+        <h2 className="font-medium leading-Sosh22 text-SoshColorGrey700">
+          Stake ETH
+        </h2>
       </div>
 
-      <div className="flex flex-col gap-2 justify-center items-center mb-8">
-        <Image alt="qr" src={"/smallETh.svg"} width={24} height={24} />
-        <div className="text-SoshColorGrey600 text-sm leading-Sosh22">
+      <div className="flex flex-col py-8 gap-8 rounded-2xl min-w-96 sosh__linear-gradient2 items-center justify-center mb-8 p-4">
+        <Image
+          className="w-auto"
+          priority
+          src={"/ETH.svg"}
+          alt="Blast"
+          width={64}
+          height={64}
+        />
+
+        <div className="flex gap-2 text-2xl leading-Sosh22 font-bold text-white">
           0.5 ETH
         </div>
-        <div className="text-SoshColorGrey600 text-sm leading-Sosh22">
-          2000 SST
+        <div className="flex items-center gap-2 leading-Sosh22 font-bold text-white">
+          <Transfer color="white" />
+
+          <p>2000 SST</p>
         </div>
       </div>
 
-      <div className="flex min-w-96 flex-col mb-8 py-4 px-8 gap-4 items-start rounded-2xl sosh__background border border-SoshColorGrey300">
+      <div className="flex min-w-96 flex-col mb-11 bg-white py-4 px-8 gap-2 items-start rounded-2xl sosh__background border border-SoshColorGrey300">
         <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
-            Network
-          </div>
-          <div className="text-xs leading-Sosh22">Blast</div>
+          <div className="leading-Sosh22 text-black">Amount Total</div>
+          <div className="text-xs text-black leading-Sosh22 ">0.5 ETH</div>
         </div>
         <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
-            Expire in
-          </div>
-          <div className="text-xs leading-Sosh22">3 hr</div>
+          <div className="leading-Sosh22 text-black">Tax Fee</div>
+          <div className="text-xs text-black leading-Sosh22">0.023 ETH</div>
         </div>
         <div className="flex justify-between w-full text-SoshColorGrey600">
-          <div className="text-base leading-Sosh22 text-SoshColorGrey700">
-            Total Amount
+          <div className="leading-Sosh22 text-black">Total Cost</div>
+          <div className="text-xs text-black leading-Sosh22">
+            0.523 ETH | 9000 SST
           </div>
-          <div className="text-xs leading-Sosh22">0.531 ETH</div>
         </div>
       </div>
 
@@ -57,9 +66,9 @@ function App(): JSX.Element {
         <div className="flex flex-col m-auto gap-2">
           <button
             onClick={() => router.push("/account/stakeETH/connectwallet")}
-            className={`p-4 w-full rounded-2xl leading-5 text-sm text-white bg-green-500`}
+            className={`p-4 w-full rounded-2xl leading-5 text-sm text-white sosh__linear-gradient`}
           >
-            Proceed
+            Confirm
           </button>
         </div>
       </div>

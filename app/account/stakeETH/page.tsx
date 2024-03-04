@@ -13,7 +13,7 @@ function App(): JSX.Element {
 
   return (
     <div className="h-full flex justify-start flex-col items-center">
-      <div className="mb-8 mt-10 font-[425]">
+      <div className="mb-10 mt-8">
         <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
@@ -23,7 +23,9 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-normal leading-Sosh22">Stake ETH</h2>
+        <h2 className="font-medium leading-Sosh22 text-SoshColorGrey700">
+          Stake ETH
+        </h2>
       </div>
 
       <div className="flex flex-col gap-2 w-96 mb-8">
@@ -32,7 +34,7 @@ function App(): JSX.Element {
         </div>
         <div className="flex h-14">
           <input
-            type="text"
+            type="number"
             placeholder="Amount of ETH"
             onChange={(e) => setAmount(e.target.value)}
             className="flex-1 px-8 py-4 border rounded-3xl border-SoshColorGrey300"
@@ -48,9 +50,9 @@ function App(): JSX.Element {
         <div className="flex flex-col m-auto gap-5">
           <button
             onClick={() => router.push("/account/stakeETH/overview")}
-            className={`p-4 w-full rounded-2xl leading-5 text-sm  ${
+            className={`p-4 w-full rounded-2xl font-bold leading-5 text-sm  ${
               amount.length > 0
-                ? " text-white bg-green-500"
+                ? " text-white sosh__linear-gradient"
                 : "text-black bg-SoSHColorDisabled"
             }`}
             disabled={amount.length === 0}
