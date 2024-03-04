@@ -106,7 +106,7 @@ function App(): JSX.Element {
                 priority={true}
                 key={idx}
                 className="object-cover rounded-lg"
-                src={preview || "/ProfilePic.png"}
+                src={preview || "/ProfilePic.svg"}
                 width={350}
                 height={250}
                 alt="uploaded picture"

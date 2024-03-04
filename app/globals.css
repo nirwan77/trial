@@ -28,15 +28,7 @@ body {
   }
 }
 
-.sosh__background {
-  background: linear-gradient(
-    270deg,
-    rgba(24, 191, 159, 0.18) 0%,
-    rgba(24, 191, 159, 0.04) 100%
-  );
-}
-
-.sosh__button {
+.sosh__linear-gradient {
   background: var(
     --SoshColor-ButtonColor,
     linear-gradient(270deg, #ffc68d 0%, #fb8b78 100%)

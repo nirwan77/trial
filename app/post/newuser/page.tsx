@@ -64,7 +64,7 @@ function App(): JSX.Element {
   return (
     <div className="flex justify-center h-screen flex-col items-center">
       <div className="w-full flex-col flex items-center justify-center">
-        <div className="mb-16 mt-10 font-[425]">
+        <div className="mb-16 mt-8 font-[425]">
           <button className="absolute left-4" onClick={() => router.back()}>
             <Image
               priority={true}
@@ -129,7 +129,7 @@ function App(): JSX.Element {
         <button
           className={`w-full p-4 font-[425] text-sm leading-Sosh22 rounded-2xl ${
             username.length > 0 && userDetail.length > 0
-              ? " sosh__button text-white"
+              ? "sosh__linear-gradient text-white"
               : "bg-SoSHColorDisabled text-black"
           }`}
           disabled={username.length > 0 && userDetail.length > 0 ? true : false}
