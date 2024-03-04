@@ -132,7 +132,7 @@ function App(): JSX.Element {
               ? "sosh__linear-gradient text-white"
               : "bg-SoSHColorDisabled text-black"
           }`}
-          disabled={username.length > 0 && userDetail.length > 0 ? true : false}
+          disabled={username.length > 0 && userDetail.length > 0 ? false : true}
           onClick={handleSubmit}
         >
           Proceed
