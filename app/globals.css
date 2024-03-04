@@ -32,3 +32,20 @@ body {
     text-wrap: balance;
   }
 }
+
+.sosh__background {
+  background: linear-gradient(
+    270deg,
+    rgba(24, 191, 159, 0.18) 0%,
+    rgba(24, 191, 159, 0.04) 100%
+  );
+}
+
+.overflow-no-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-no-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

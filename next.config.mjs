@@ -14,9 +14,14 @@ const withPWA = withPWAInit({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  api: {
-    bodyParser: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
 };
 
-export default withPWA({ nextConfig });
+export default withPWA(nextConfig);

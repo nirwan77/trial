@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const PublishedPostsSchema = new mongoose.Schema(
   {
@@ -11,11 +11,18 @@ const PublishedPostsSchema = new mongoose.Schema(
     },
     userId: {
       type: String,
-      require: true,
+      ref: "User",
     },
+    ipfs: {
+      type: Array,
+      unique: true,
+    },
+    views: [{ type: String, ref: "User" }],
+    likes: [{ type: String, ref: "User" }],
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],
   },
   { timestamps: true }
 );
 
-export default mongoose.models.PublishedPosts ||
-  mongoose.model("PublishedPosts", PublishedPostsSchema);
+export default mongoose.models.tests ||
+  mongoose.model("tests", PublishedPostsSchema);
