@@ -56,10 +56,10 @@ function App(): JSX.Element {
       </div>
 
       <button
-        className="p-4 w-96 max-w-96 rounded-2xl font-[425] leading-Sosh22 sosh__linear-gradient text-white"
+        className="p-4 w-96 max-w-96 rounded-2xl font-bold leading-Sosh22 sosh__linear-gradient text-white"
         onClick={() => router.push("/post/users/confirmCCT/purchaseCCT")}
       >
-        Deposit SST
+        Confirm
       </button>
     </div>
   );
