@@ -18,13 +18,8 @@
 
 body {
   font-size: 16px;
-  /* color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  /* color: rgb(var(--foreground-rgb));  */
+  background: #f2efe8;
 }
 
 @layer utilities {
@@ -39,6 +34,15 @@ body {
     rgba(24, 191, 159, 0.18) 0%,
     rgba(24, 191, 159, 0.04) 100%
   );
+}
+
+.sosh__button {
+  background: var(
+    --SoshColor-ButtonColor,
+    linear-gradient(270deg, #ffc68d 0%, #fb8b78 100%)
+  );
+
+  box-shadow: 0px 0px 6px 0px #e3bcbc;
 }
 
 .overflow-no-scroll::-webkit-scrollbar {
