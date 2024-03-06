@@ -10,7 +10,7 @@ function App(): JSX.Element {
 
   return (
     <div className="h-full flex justify-start flex-col items-center">
-      <div className="mb-8 mt-10 font-[425]">
+      <div className="mt-8 mb-16">
         <button className="absolute left-4" onClick={() => router.back()}>
           <Image
             priority={true}
@@ -20,41 +20,37 @@ function App(): JSX.Element {
             alt="back arrow"
           />
         </button>
-        <h2 className="font-[425%] leading-Sosh22">Publish post</h2>
+        <h2 className="font-medium leading-Sosh22 text-SoshColorGrey700">
+          Publish status
+        </h2>
       </div>
 
-      <div>
+      <div className="mb-20">
         <Image
           priority={true}
           src={"/success.svg"}
-          width={380}
-          height={185}
-          alt="back arrow"
-          className="mb-1"
+          width={160}
+          height={160}
+          alt="success image"
         />
       </div>
 
-      <div className="mb-4 flex flex-col items-center w-80 px-7">
+      <div className="mb-24 flex flex-col items-center w-80 px-7">
         <div className="text-SoshColorGreyScale text-2xl leading-Sosh22 mb-4">
           Success
         </div>
         <div className="text-SoshColorGreyScale text-sm font-normal leading-Sosh22 text-center">
-          Your post has published. Share your post and start to earn now.
+          Your CCT asset purchase is successful. Share your post and start to
+          earn now.
         </div>
       </div>
 
-      <div className="w-96">
-        <div className="flex flex-col m-auto gap-5">
-          <button
-            onClick={() => router.push("/account")}
-            className={
-              "p-4 w-full rounded-2xl font-[425] leading-5 text-sm bg-green-500 text-white"
-            }
-          >
-            Check your post
-          </button>
-        </div>
-      </div>
+      <button
+        className="p-4 w-96 max-w-96 rounded-2xl font-bold leading-Sosh22 sosh__linear-gradient text-white"
+        onClick={() => router.push("/account")}
+      >
+        Check your asset
+      </button>
     </div>
   );
 }
