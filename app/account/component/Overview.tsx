@@ -42,7 +42,10 @@ const Card = () => {
           >
             Stake
           </button>
-          <button className="px-8 text-sm leading-Sosh22 py-2 rounded-lg border border-SoshColorGrey700">
+          <button
+            onClick={() => router.push("/account/withdrawETH")}
+            className="px-8 text-sm leading-Sosh22 py-2 rounded-lg border border-SoshColorGrey700"
+          >
             Withdraw
           </button>
         </div>
