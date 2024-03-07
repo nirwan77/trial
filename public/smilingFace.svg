@@ -1,24 +1,24 @@
-<svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Group 283">
-<g id="Ellipse 26" filter="url(#filter0_d_2009_2905)">
-<circle cx="37" cy="37" r="17" fill="#FBFBFB"/>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 252">
+<g id="Ellipse 24" filter="url(#filter0_d_1_1938)">
+<circle cx="60" cy="60" r="36" fill="#FBFBFB"/>
 </g>
 <g id="Group 60">
-<path id="Ellipse 29" d="M31.5412 36.9366C31.5412 38.1146 30.5862 39.0695 29.4083 39.0695C28.2303 39.0695 27.2754 38.1146 27.2754 36.9366C27.2754 35.7586 28.2303 34.8037 29.4083 34.8037C30.5862 34.8037 31.5412 35.7586 31.5412 36.9366Z" fill="#333232"/>
-<path id="Ellipse 30" d="M46.4709 36.9366C46.4709 38.1146 45.5159 39.0695 44.338 39.0695C43.16 39.0695 42.2051 38.1146 42.2051 36.9366C42.2051 35.7586 43.16 34.8037 44.338 34.8037C45.5159 34.8037 46.4709 35.7586 46.4709 36.9366Z" fill="#333232"/>
-<path id="Vector 18 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M33.797 37.2632C34.0216 36.9262 34.4768 36.8351 34.8138 37.0598C35.8994 37.7837 37.3137 37.7837 38.3994 37.0598C38.7363 36.8351 39.1915 36.9262 39.4161 37.2632C39.6407 37.6002 39.5496 38.0555 39.2127 38.2801C37.6346 39.3325 35.5786 39.3325 34.0004 38.2801C33.6635 38.0555 33.5724 37.6002 33.797 37.2632Z" fill="#333232"/>
+<path id="Ellipse 29" d="M48.6001 59.7C48.6001 62.1852 46.5854 64.2 44.1001 64.2C41.6148 64.2 39.6001 62.1852 39.6001 59.7C39.6001 57.2147 41.6148 55.2 44.1001 55.2C46.5854 55.2 48.6001 57.2147 48.6001 59.7Z" fill="#333232"/>
+<path id="Ellipse 30" d="M79.8 59.7C79.8 62.1852 77.7853 64.2 75.3 64.2C72.8148 64.2 70.8 62.1852 70.8 59.7C70.8 57.2147 72.8148 55.2 75.3 55.2C77.7853 55.2 79.8 57.2147 79.8 59.7Z" fill="#333232"/>
+<path id="Vector 18 (Stroke)" fill-rule="evenodd" clip-rule="evenodd" d="M53.952 60.9679C54.4116 60.2786 55.3429 60.0924 56.0322 60.5519C58.2533 62.0326 61.1469 62.0326 63.3681 60.5519C64.0574 60.0924 64.9887 60.2786 65.4482 60.9679C65.9077 61.6572 65.7215 62.5885 65.0322 63.048C61.8033 65.2006 57.5969 65.2006 54.3681 63.048C53.6788 62.5885 53.4925 61.6572 53.952 60.9679Z" fill="#333232"/>
 </g>
 </g>
 <defs>
-<filter id="filter0_d_2009_2905" x="0" y="0" width="74" height="74" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_1_1938" x="0" y="0" width="120" height="120" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
-<feGaussianBlur stdDeviation="10"/>
+<feGaussianBlur stdDeviation="12"/>
 <feComposite in2="hardAlpha" operator="out"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
-<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2009_2905"/>
-<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2009_2905" result="shape"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_1938"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_1938" result="shape"/>
 </filter>
 </defs>
 </svg>
