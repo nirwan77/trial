@@ -49,7 +49,9 @@ const Card = () => {
             Withdraw
           </button>
         </div>
-        <div className="w-full text-sm text-center text-SoshColorGrey600 leading-Sosh22">
+        <div 
+          onClick={() => router.push("/account/transaction")}
+          className="w-full text-sm text-center text-SoshColorGrey600 leading-Sosh22">
           Transaction History
         </div>
       </div>
