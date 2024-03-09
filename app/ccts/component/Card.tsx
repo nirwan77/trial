@@ -63,7 +63,7 @@ const Card = ({ data }: data) => {
                   <div>
                     <div className="absolute top-0 left-0 w-full flex justify-between px-4 py-5 z-50 h-auto">
                       <button onClick={() => setShowHoldersModal(true)}>
-                        <FacePile faces={faces} />
+                        <FacePile faces={faces} width={60} height={60} />
                       </button>
                       <div className="flex gap-4">
                         <Image

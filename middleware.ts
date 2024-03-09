@@ -1,6 +1,6 @@
 import { PrivyClient } from "@privy-io/server-auth";
 import { permanentRedirect } from "next/navigation";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request: NextRequest) {
   try {
@@ -20,7 +20,7 @@ export async function middleware(request: NextRequest) {
 
     await privy.verifyAuthToken(authToken);
   } catch (err) {
-    return permanentRedirect("/account");
+    return new NextResponse(permanentRedirect("/account"));
   }
 }
 

@@ -115,7 +115,7 @@ const Card = () => {
                       </Swiper>
 
                       <div className="absolute top-0 left-0 w-full flex justify-between px-4 py-5 z-20 h-auto">
-                        <FacePile faces={faces} />
+                        <FacePile faces={faces} width={60} height={60} />
                         <div className="flex gap-4">
                           <Image
                             alt="share"

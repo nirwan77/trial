@@ -133,7 +133,7 @@ function App(): JSX.Element {
             <div>
               <div className="absolute left-0 w-full flex justify-between px-4 py-5 z-20 h-auto">
                 <button onClick={() => setShowHoldersModal(true)}>
-                  <FacePile faces={faces} />
+                  <FacePile faces={faces} width={60} height={60} />
                 </button>
                 <div className="flex gap-4">
                   <Image

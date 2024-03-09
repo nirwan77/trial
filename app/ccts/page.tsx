@@ -11,9 +11,10 @@ import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import LeaderBoard from "./component/LeaderBoard";
 
 function App(): JSX.Element {
-  const [activeTab, setActiveTab] = useState<string>("Trending");
+  const [activeTab, setActiveTab] = useState<string>("LeaderBoard");
 
   return (
     <div className="mt-8">
@@ -133,6 +134,7 @@ function App(): JSX.Element {
       {activeTab === "Trending" && <Trending />}
       {activeTab === "Top" && <Top />}
       {activeTab === "Latest" && <Latest />}
+      {activeTab === "LeaderBoard" && <LeaderBoard />}
     </div>
   );
 }
