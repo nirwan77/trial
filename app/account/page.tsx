@@ -20,7 +20,7 @@ function App(): JSX.Element {
           <Image alt="" src={"/profilePic.svg"} width={72} height={72} />
           <div
             onClick={() => setShowFollowModal(true)}
-            className="flex flex-col text-white items-center mr-5"
+            className="flex flex-col text-white items-center"
           >
             <div className="text-sm font-bold">20</div>
             <div className="text-sm">Following</div>
@@ -28,7 +28,7 @@ function App(): JSX.Element {
 
           <div
             onClick={() => setShowFollowModal(true)}
-            className="flex flex-col text-white items-center mr-10"
+            className="flex flex-col text-white items-center"
           >
             <div className="text-sm font-bold">30</div>
             <div className="text-sm">Followers</div>
