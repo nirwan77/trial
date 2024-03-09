@@ -408,7 +408,7 @@ function App(): JSX.Element {
 
                     <div>
                       <button
-                        onClick={() => router.push("/account/assetstatus")}
+                        onClick={() => router.push("/ccts/purchaseCCT/status")}
                         className="w-full font-bold px-16 py-4 sosh__linear-gradient text-white rounded-2xl"
                       >
                         Confirm
