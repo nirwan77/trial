@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 
-const Card = () => {
+const Overview = () => {
   const router = useRouter();
 
   return (
@@ -64,4 +64,4 @@ const Card = () => {
   );
 };
 
-export default Card;
+export default Overview;

@@ -155,7 +155,10 @@ const LeaderBoard = () => {
                         </button>
                       </div>
 
-                      <div className="flex justify-between px-4">
+                      <div
+                        className="flex justify-between px-4"
+                        onClick={() => router.push("account/otherAccount")}
+                      >
                         <div className="flex gap-4 justify-center text-SoshColorGrey700 items-center">
                           <div>
                             <Image
@@ -173,7 +176,10 @@ const LeaderBoard = () => {
                         </div>
                       </div>
 
-                      <div className="flex justify-between px-4">
+                      <div
+                        className="flex justify-between px-4"
+                        onClick={() => router.push("account/otherAccount")}
+                      >
                         <div className="flex gap-4 justify-center items-center">
                           <div>
                             <Image

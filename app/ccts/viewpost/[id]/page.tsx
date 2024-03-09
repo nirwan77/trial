@@ -257,7 +257,11 @@ function App(): JSX.Element {
                       />
                     </button>
                   </div>
-                  <div className="flex justify-between px-4">
+
+                  <div
+                    className="flex justify-between px-4"
+                    onClick={() => router.push("account/otherAccount")}
+                  >
                     <div className="flex gap-4 justify-center text-SoshColorGrey700 items-center">
                       <div>
                         <Image
@@ -274,7 +278,11 @@ function App(): JSX.Element {
                       Holding 1 CCTs
                     </div>
                   </div>
-                  <div className="flex justify-between px-4">
+
+                  <div
+                    className="flex justify-between px-4"
+                    onClick={() => router.push("account/otherAccount")}
+                  >
                     <div className="flex gap-4 justify-center items-center">
                       <div>
                         <Image
