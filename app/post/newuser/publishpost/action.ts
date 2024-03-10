@@ -1,6 +1,6 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import crypto from "crypto";
 import { NFTStorage, File } from "nft.storage";
 import {
@@ -46,7 +46,7 @@ export const uploadPost = async (files: File[], user: string) => {
         console.log("got a video!");
         var thumb = null;
 
-        await generateVideoThumbnails(file, 0).then((res) => {
+        await generateVideoThumbnails(file, 0, 'image/jpeg').then((res) => {
           console.log(res);
           thumb = new File([convertDataUrlToBlob(res[0])], "myThumbnail", { type: `image/jpeg` });
         });
@@ -66,15 +66,19 @@ export const uploadPost = async (files: File[], user: string) => {
         videoIds.push(video_id.data);
         image.push(signedUrl.split("?")[0]);
 
-        const nft_video = {
-          properties: { video: file },
-          image: new Blob([thumb], { type: thumb.type }),
-          name: file.name,
-          description: "description",
+        if(thumb && 'type' in thumb) {
+          thumb = thumb as File;
+          const nft_video = {
+            properties: { video: file },
+            image: new Blob([thumb], { type: thumb.type }),
+            name: file.name,
+            description: "description",
+          }
+          const metadata = await client.store(nft_video);
+          console.log("Metadata URI: ", metadata.url);
+          ipfsLink.push(metadata.url);
         }
-        const metadata = await client.store(nft_video);
-        console.log("Metadata URI: ", metadata.url);
-        ipfsLink.push(metadata.url);
+        
 
       } else {
         await axios.put(signedUrl, file, {
@@ -98,7 +102,7 @@ export const uploadPost = async (files: File[], user: string) => {
   return { image, ipfsLink, videoIds };
 };
 
-function convertDataUrlToBlob(dataUrl): Blob {
+function convertDataUrlToBlob(dataUrl: any): Blob {
   const arr = dataUrl.split(',');
   const mime = arr[0].match(/:(.*?);/)[1];
   const bstr = atob(arr[1]);

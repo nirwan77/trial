@@ -30,6 +30,7 @@ interface data {
   likes: string[];
   _id: string;
   views: number;
+  videoIds?: string[]; // Add this line
 }
 
 function App(): JSX.Element {
@@ -167,7 +168,7 @@ function App(): JSX.Element {
                 {data &&
                   data.url.map((image, idx) => {
                     // useVideo && data.videoIds.length > 0
-                    if (useVideo && data.videoIds.length > 0) {
+                    if (useVideo && (data.videoIds?.length ?? 0) > 0) {
                       return (
                         <SwiperSlide key={idx}>
                           <VideoPlayer video_id={data.videoIds} />
@@ -225,14 +226,14 @@ function App(): JSX.Element {
                 </div>
               </Swiper>
               {/* {if (data.videoIds.length > 0)} */}
-              <button
+              {/* <button
                 onClick={() => {
                   console.log("eeeeeeeeeeeee");
                   setUseVideo(true);
                 }}
               >
-                play the video
-              </button>
+                Play
+              </button> */}
               <button
                 onClick={() => setShowCCTModal(true)}
                 className="flex w-full justify-center py-3 px-4 text-white font-bold leading-Sosh22"

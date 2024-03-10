@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import axios from "axios";
 
-const VideoPlayer = (video_id) => {
+const VideoPlayer = (video_id: any) => {
 
   const [url, setUrl] = useState<string | null>(null);
 
@@ -21,7 +21,7 @@ const VideoPlayer = (video_id) => {
     }
 
     fetchData();
-  }, [])
+  }, [video_id.video_id])
 
   if (!url) {
     console.log("rendering non url")

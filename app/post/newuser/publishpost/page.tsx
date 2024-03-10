@@ -7,9 +7,9 @@ import ReactPlayer from "react-player";
 import Image from "next/image";
 import { uploadPost } from "./action";
 import { useRouter } from "next/navigation";
-import { axios } from "@/lib";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+import { usePostData } from '@/context/PostDataContext';
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -27,13 +27,12 @@ function App(): JSX.Element {
 
   const [showWarningModal, setShowWarningModal] = useState(false);
 
-  const [disableButton, setDisableButton] = useState(false);
-
   const [previewUrl, setPreviewUrl] = useState<string[] | null | undefined>(
     null
   );
 
   const [previewType, setPreviewType] = useState<string | null>(null);
+  const { setPostData } = usePostData();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const filesArray = e.target.files;
@@ -55,28 +54,30 @@ function App(): JSX.Element {
   };
 
   const handleClick = async () => {
-    setDisableButton(true);
     if (files.length > 0) {
       const { image, ipfsLink, videoIds } = await uploadPost(files, user!.id);
-      if (files[0].type == "video/mp4") {
-        await axios.post("/uploadPost", {
-          url: image,
-          userId: user?.id,
-          story: userStory,
-          ipfs: ipfsLink,
-          views: [],
-          videoIds: videoIds,
-        });
-      } else {
-        await axios.post("/uploadPost", {
-          url: image,
-          userId: user?.id,
-          story: userStory,
-          ipfs: ipfsLink,
-          views: [],
-          videoIds: [],
-        });
-      }
+      const data = { image, ipfsLink, videoIds, userStory, user, files };
+      console.log(ipfsLink)
+      setPostData(data);
+      // if (files[0].type == "video/mp4") {
+      //   await axios.post("/uploadPost", {
+      //     url: image,
+      //     userId: user?.id,
+      //     story: userStory,
+      //     ipfs: ipfsLink,
+      //     views: [],
+      //     videoIds: videoIds,
+      //   });
+      // } else {
+      //   await axios.post("/uploadPost", {
+      //     url: image,
+      //     userId: user?.id,
+      //     story: userStory,
+      //     ipfs: ipfsLink,
+      //     views: [],
+      //     videoIds: [],
+      //   });
+      // }
 
     }
 
@@ -213,7 +214,7 @@ function App(): JSX.Element {
           <div className="py-8 px-2 w-360 border shadow-lg rounded-2xl bg-white">
             <div className="flex flex-col justify-center items-center gap-8">
               <div className="flex font-medium text-SoshColorGrey700 leading-Sosh22 justify-center px-8">
-                <div>purchase 1 CCT to post</div>
+                <div>Purchase 1 CCT to post</div>
               </div>
               <div className="flex gap-8 justify-center w-full items-start m-auto mb-6">
                 <button
@@ -224,7 +225,7 @@ function App(): JSX.Element {
                 </button>
                 <button
                   onClick={handleClick}
-                  disabled={disableButton}
+                  // disabled={disableButton}
                   className="px-8 py-2 text-xs text-white font-bold leading-5 sosh__linear-gradient rounded-lg"
                 >
                   Purchase

@@ -13,6 +13,10 @@ const PublishedPostsSchema = new mongoose.Schema(
       type: String,
       ref: "User",
     },
+    asserId: {
+      type: Number,
+      unique: true,
+    },
     ipfs: {
       type: Array,
       unique: true,
