@@ -2,6 +2,7 @@
 
 import { usePrivy } from "@privy-io/react-auth";
 import React, { useState, ChangeEvent, useEffect } from "react";
+import ReactPlayer from "react-player";
 
 import Image from "next/image";
 import { uploadPost } from "./action";
@@ -34,6 +35,8 @@ function App(): JSX.Element {
     null
   );
 
+  const [previewType, setPreviewType] = useState<string | null>(null);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const filesArray = e.target.files;
     if (!filesArray) {
@@ -44,7 +47,11 @@ function App(): JSX.Element {
       alert("You can only upload up to 9 photos.");
     } else {
       setFiles(selectedFiles);
-      const url = selectedFiles.map((a) => URL.createObjectURL(a));
+      const url = selectedFiles.map((a) => {
+        setPreviewType(a.type.split("/")[0]);
+        return URL.createObjectURL(a)
+      });
+      console.log(url);
       setPreviewUrl(url);
     }
   };
@@ -52,15 +59,27 @@ function App(): JSX.Element {
   const handleClick = async () => {
     setDisableButton(true);
     if (files.length > 0) {
-      const { image, ipfsLink } = await uploadPost(files, user!.id);
+      const { image, ipfsLink, videoIds } = await uploadPost(files, user!.id);
+      if (files[0].type == "video/mp4") {
+        await axios.post("/uploadPost", {
+          url: image,
+          userId: user?.id,
+          story: userStory,
+          ipfs: ipfsLink,
+          views: [],
+          videoIds: videoIds,
+        });
+      } else {
+        await axios.post("/uploadPost", {
+          url: image,
+          userId: user?.id,
+          story: userStory,
+          ipfs: ipfsLink,
+          views: [],
+          videoIds: [],
+        });
+      }
 
-      await axios.post("/uploadPost", {
-        url: image,
-        userId: user?.id,
-        story: userStory,
-        ipfs: ipfsLink,
-        views: [],
-      });
     }
 
     push("/post/users/confirmCCT");
@@ -69,6 +88,7 @@ function App(): JSX.Element {
   const handleRemoveImage = (index: number) => {
     const newArray = previewUrl?.filter((_, idx) => idx !== index);
     setPreviewUrl(newArray);
+    setPreviewType(null);
   };
 
   useEffect(() => {
@@ -85,11 +105,10 @@ function App(): JSX.Element {
         </div>
         <div
           className={
-            `${
-              showWarningModal &&
+            `${showWarningModal &&
               (userStory === undefined || userStory.length === 0)
-                ? "flex "
-                : "hidden "
+              ? "flex "
+              : "hidden "
             }` +
             "absolute px-4 py-[18px] top-9 rounded-2xl bg-white z-50 w-96 gap-2 flex items-start justify-start"
           }
@@ -150,14 +169,28 @@ function App(): JSX.Element {
             {previewUrl &&
               previewUrl.map((preview, idx) => (
                 <SwiperSlide key={idx} className="relative">
-                  <Image
-                    priority={true}
-                    className="rounded-lg"
-                    src={preview || "/ProfilePic.svg"}
-                    width={320}
-                    height={192}
-                    alt="uploaded picture"
-                  />
+                  {previewType == "video" &&
+                    <ReactPlayer
+                      width="300px"
+                      height="200px"
+                      url={preview || "/ProfilePic.svg"}
+                      playing={false}
+                      controls={true}
+                      // light is usefull incase of dark mode
+                      light={false}
+                      // picture in picture
+                      pip={true}
+                    />}
+                  {previewType == "image" &&
+                    <Image
+                      priority={true}
+                      className="rounded-lg"
+                      src={preview || "/ProfilePic.svg"}
+                      width={320}
+                      height={192}
+                      alt="uploaded picture"
+                    />
+                  }
                   <button onClick={() => handleRemoveImage(idx)}>
                     <Image
                       priority={true}
@@ -218,7 +251,7 @@ function App(): JSX.Element {
         />
         <input
           className="hidden"
-          accept="image/*"
+          accept="image/*,video/*"
           type="file"
           multiple
           max={9}
