@@ -26,12 +26,11 @@ const PublishedPostsSchema = new mongoose.Schema(
     },
     views: [{ type: String, ref: "User" }],
     likes: [{ type: String, ref: "User" }],
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comments" }],
   },
   { timestamps: true }
 );
 
-PublishedPostsSchema.add({videoIds: {type: Array}});
+PublishedPostsSchema.add({ videoIds: { type: Array } });
 
 export default mongoose.models.tests ||
   mongoose.model("tests", PublishedPostsSchema);

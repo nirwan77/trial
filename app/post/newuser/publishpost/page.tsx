@@ -9,7 +9,7 @@ import { uploadPost } from "./action";
 import { useRouter } from "next/navigation";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { usePostData } from '@/context/PostDataContext';
+import { usePostData } from "@/context/PostDataContext";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -46,7 +46,7 @@ function App(): JSX.Element {
       setFiles(selectedFiles);
       const url = selectedFiles.map((a) => {
         setPreviewType(a.type.split("/")[0]);
-        return URL.createObjectURL(a)
+        return URL.createObjectURL(a);
       });
       console.log(url);
       setPreviewUrl(url);
@@ -57,7 +57,7 @@ function App(): JSX.Element {
     if (files.length > 0) {
       const { image, ipfsLink, videoIds } = await uploadPost(files, user!.id);
       const data = { image, ipfsLink, videoIds, userStory, user, files };
-      console.log(ipfsLink)
+      console.log(ipfsLink);
       setPostData(data);
       // if (files[0].type == "video/mp4") {
       //   await axios.post("/uploadPost", {
@@ -78,7 +78,6 @@ function App(): JSX.Element {
       //     videoIds: [],
       //   });
       // }
-
     }
 
     push("/post/users/confirmCCT");
@@ -104,10 +103,11 @@ function App(): JSX.Element {
         </div>
         <div
           className={
-            `${showWarningModal &&
+            `${
+              showWarningModal &&
               (userStory === undefined || userStory.length === 0)
-              ? "flex "
-              : "hidden "
+                ? "flex "
+                : "hidden "
             }` +
             "absolute px-4 py-[18px] top-9 rounded-2xl bg-white z-50 w-96 gap-2 flex items-start justify-start"
           }
@@ -168,7 +168,7 @@ function App(): JSX.Element {
             {previewUrl &&
               previewUrl.map((preview, idx) => (
                 <SwiperSlide key={idx} className="relative">
-                  {previewType == "video" &&
+                  {previewType == "video" && (
                     <ReactPlayer
                       width="300px"
                       height="200px"
@@ -179,8 +179,9 @@ function App(): JSX.Element {
                       light={false}
                       // picture in picture
                       pip={true}
-                    />}
-                  {previewType == "image" &&
+                    />
+                  )}
+                  {previewType == "image" && (
                     <Image
                       priority={true}
                       className="rounded-lg"
@@ -189,7 +190,7 @@ function App(): JSX.Element {
                       height={192}
                       alt="uploaded picture"
                     />
-                  }
+                  )}
                   <button onClick={() => handleRemoveImage(idx)}>
                     <Image
                       priority={true}

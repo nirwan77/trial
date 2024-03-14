@@ -1,14 +1,10 @@
 import mongoose from "mongoose";
 
-const mongodb = process.env.MONGODB_URI || '';
-
 const connect = async () => {
   try {
     await mongoose.connect(
-      mongodb
-      , { 
-        dbName: 'SoSH', 
-    });
+      "mongodb+srv://nirwan:nirwan@cluster0.sfkf39v.mongodb.net/user?retryWrites=true&w=majority"
+    );
   } catch (error) {
     throw new Error("Error connecting to mongodb" + error);
   }

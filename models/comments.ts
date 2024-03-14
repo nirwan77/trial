@@ -2,7 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const CommentsSchema = new mongoose.Schema(
   {
-    body: {
+    postId: { type: Schema.Types.ObjectId, ref: "tests" },
+    userId: {
+      type: String,
+      ref: "User",
+    },
+    comment: {
       type: String,
     },
     likes: [{ type: String, ref: "User" }],
